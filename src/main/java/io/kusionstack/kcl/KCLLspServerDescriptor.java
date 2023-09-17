@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.platform.lsp.api.ProjectWideLspServerDescriptor;
+import com.intellij.platform.lsp.api.customization.LspCompletionSupport;
 import org.jetbrains.annotations.NotNull;
 
 public class KCLLspServerDescriptor extends ProjectWideLspServerDescriptor {
@@ -19,4 +20,10 @@ public class KCLLspServerDescriptor extends ProjectWideLspServerDescriptor {
         GeneralCommandLine generalCommandLine = new GeneralCommandLine("kcl-language-server", "--stdio");
         return generalCommandLine;
     }
+
+    // references resolution is implemented without using the LSP server
+    Boolean lspGoToDefinitionSupport = false;
+
+    // code completion is implemented without using the LSP server
+    LspCompletionSupport lspCompletionSupport = null;
 }
